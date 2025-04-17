@@ -1,0 +1,15 @@
+model: UNet
+device: "cuda"
+image_height: 256
+image_width: 256
+num_classes: 7
+checkpoint_path: data/models/my_checkpoint.pth.tar
+class_names:
+  - MEL
+  - NV
+  - BCC
+  - AKIEC
+  - BKL
+  - DF
+  - VASC
+output_directory: output/inference_outputs

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  skin-cancer-detection:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    environment:
+      - PYTHONPATH=/app
+      - NVIDIA_VISIBLE_DEVICES=all
+      - DISPLAY=${DISPLAY}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: python run.py
